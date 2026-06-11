@@ -3,13 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Financial Literacy for Teens</title>
 
 <style>
 
 body{
     margin:0;
-    font-family:Arial, sans-serif;
+    font-family:Arial,sans-serif;
     background:#f5fbff;
     color:#1f2937;
 }
@@ -33,8 +34,8 @@ header p{
 
 nav{
     background:white;
-    padding:15px;
     text-align:center;
+    padding:15px;
     box-shadow:0 2px 8px rgba(0,0,0,.08);
     position:sticky;
     top:0;
@@ -48,7 +49,6 @@ nav a{
     margin:5px;
     border-radius:8px;
     font-weight:bold;
-    transition:.3s;
 }
 
 nav a:hover{
@@ -73,12 +73,6 @@ nav a:hover{
     color:#2563eb;
 }
 
-.lesson-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
-}
-
 .lesson-card{
     background:#eff6ff;
     border:1px solid #bfdbfe;
@@ -88,7 +82,27 @@ nav a:hover{
 
 .lesson-card h3{
     color:#1e40af;
-    margin-top:0;
+}
+
+.button{
+    display:inline-block;
+    background:#2563eb;
+    color:white;
+    text-decoration:none;
+    padding:12px 20px;
+    border-radius:8px;
+    margin-top:10px;
+    border:none;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.button:hover{
+    background:#1d4ed8;
+}
+
+.quiz-question{
+    margin-top:20px;
 }
 
 footer{
@@ -99,8 +113,11 @@ footer{
     font-weight:bold;
 }
 
-ul li{
-    margin-bottom:10px;
+#result{
+    margin-top:20px;
+    font-size:24px;
+    font-weight:bold;
+    color:#1e40af;
 }
 
 html{
@@ -119,7 +136,7 @@ html{
 
 <nav>
     <a href="#coursework">📚 Coursework</a>
-    <a href="#quizzes">📝 Quizzes</a>
+    <a href="#quizzes">📝 Quiz</a>
     <a href="#about">ℹ️ About</a>
 </nav>
 
@@ -127,76 +144,115 @@ html{
 
     <div class="section">
         <h2>Welcome</h2>
+
         <p>
-            Financial literacy is one of the most important life skills.
-            This website provides free lessons, activities, resources,
-            and quizzes designed specifically for middle and high school students.
+            Welcome to Financial Literacy for Teens. This website helps
+            middle and high school students learn the fundamentals of money,
+            banking, saving, investing, debt, credit, and financial responsibility.
         </p>
     </div>
 
     <div class="section" id="coursework">
+
         <h2>📚 Coursework</h2>
 
-        <div class="lesson-grid">
+        <div class="lesson-card">
 
-            <div class="lesson-card">
-                <h3>Budgeting</h3>
-                <p>Learn how to manage income and expenses.</p>
-            </div>
+            <h3>Lesson 1: Basic Financial Literacy for Teens</h3>
 
-            <div class="lesson-card">
-                <h3>Saving Money</h3>
-                <p>Build savings habits and emergency funds.</p>
-            </div>
+            <p>
+                Learn about:
+            </p>
 
-            <div class="lesson-card">
-                <h3>Banking Basics</h3>
-                <p>Understand checking and savings accounts.</p>
-            </div>
+            <ul>
+                <li>Cash</li>
+                <li>Debt</li>
+                <li>Debit Cards</li>
+                <li>Credit Cards</li>
+                <li>Bank Accounts</li>
+                <li>Savings Accounts</li>
+                <li>Investment Accounts</li>
+                <li>Assets and Liabilities</li>
+                <li>Income</li>
+                <li>Credit Scores</li>
+                <li>Loans and Interest</li>
+                <li>Mortgages</li>
+            </ul>
 
-            <div class="lesson-card">
-                <h3>Credit Scores</h3>
-                <p>Learn how credit works and why it matters.</p>
-            </div>
-
-            <div class="lesson-card">
-                <h3>Investing</h3>
-                <p>Introduction to stocks, ETFs, and compound growth.</p>
-            </div>
-
-            <div class="lesson-card">
-                <h3>Taxes</h3>
-                <p>Basic tax concepts every student should know.</p>
-            </div>
+            <a class="button"
+               href="presentations/FinancialLiteracy.pdf"
+               target="_blank">
+               📖 Open Presentation
+            </a>
 
         </div>
+
     </div>
 
     <div class="section" id="quizzes">
-        <h2>📝 Quizzes</h2>
 
-        <ul>
-            <li>Budgeting Quiz</li>
-            <li>Saving Quiz</li>
-            <li>Banking Quiz</li>
-            <li>Credit Score Quiz</li>
-            <li>Investing Quiz</li>
-            <li>Taxes Quiz</li>
-        </ul>
+        <h2>📝 Quiz</h2>
 
-        <p>
-            Add your Google Forms quiz links here as you create them.
-        </p>
+        <button class="button"
+        onclick="document.getElementById('quiz').style.display='block'">
+            Start Quiz
+        </button>
+
+        <div id="quiz" style="display:none;">
+
+            <div class="quiz-question">
+                <p><strong>1. What is debt?</strong></p>
+                <input type="radio" name="q1" value="1"> Money you owe<br>
+                <input type="radio" name="q1" value="0"> Money you earn
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>2. Which account is mainly used for daily spending?</strong></p>
+                <input type="radio" name="q2" value="1"> Checking Account<br>
+                <input type="radio" name="q2" value="0"> Savings Account
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>3. What does a credit card allow you to do?</strong></p>
+                <input type="radio" name="q3" value="1"> Borrow money and pay later<br>
+                <input type="radio" name="q3" value="0"> Store money safely
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>4. What is a credit score?</strong></p>
+                <input type="radio" name="q4" value="1"> Measure of financial responsibility<br>
+                <input type="radio" name="q4" value="0"> Type of bank account
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>5. What is interest?</strong></p>
+                <input type="radio" name="q5" value="1"> Extra money paid or earned<br>
+                <input type="radio" name="q5" value="0"> Original loan amount
+            </div>
+
+            <br>
+
+            <button class="button" onclick="gradeQuiz()">
+                Submit Quiz
+            </button>
+
+            <div id="result"></div>
+
+        </div>
+
     </div>
 
     <div class="section" id="about">
+
         <h2>ℹ️ About This Project</h2>
 
         <p>
-            This project was created to make financial education accessible,
-            practical, and engaging for students. The goal is to help young
-            people develop the money-management skills needed for future success.
+            This website was created by Rohan Vannadil to provide free
+            financial literacy education for middle and high school students.
+            The goal is to make important money-management concepts simple,
+            practical, and accessible to everyone.
         </p>
+
     </div>
 
 </div>
@@ -204,6 +260,35 @@ html{
 <footer>
     Financial Literacy for Teens © 2026
 </footer>
+
+<script>
+
+function gradeQuiz(){
+
+let score = 0;
+
+score += Number(document.querySelector('input[name="q1"]:checked')?.value || 0);
+score += Number(document.querySelector('input[name="q2"]:checked')?.value || 0);
+score += Number(document.querySelector('input[name="q3"]:checked')?.value || 0);
+score += Number(document.querySelector('input[name="q4"]:checked')?.value || 0);
+score += Number(document.querySelector('input[name="q5"]:checked')?.value || 0);
+
+let message = "";
+
+if(score === 5){
+    message = "🎉 Perfect! You scored 5/5.";
+}
+else if(score >= 3){
+    message = "👍 Good job! You scored " + score + "/5.";
+}
+else{
+    message = "📚 Keep learning! You scored " + score + "/5.";
+}
+
+document.getElementById("result").innerHTML = message;
+}
+
+</script>
 
 </body>
 </html>
