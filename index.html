@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Financial Literacy for Teens</title>
 
 <style>
@@ -80,10 +79,6 @@ nav a:hover{
     padding:20px;
 }
 
-.lesson-card h3{
-    color:#1e40af;
-}
-
 .button{
     display:inline-block;
     background:#2563eb;
@@ -94,7 +89,6 @@ nav a:hover{
     margin-top:10px;
     border:none;
     cursor:pointer;
-    font-size:16px;
 }
 
 .button:hover{
@@ -105,19 +99,19 @@ nav a:hover{
     margin-top:20px;
 }
 
+#result{
+    margin-top:20px;
+    font-size:22px;
+    font-weight:bold;
+    color:#1e40af;
+}
+
 footer{
     background:#dbeafe;
     text-align:center;
     padding:25px;
     color:#1e40af;
     font-weight:bold;
-}
-
-#result{
-    margin-top:20px;
-    font-size:24px;
-    font-weight:bold;
-    color:#1e40af;
 }
 
 html{
@@ -131,7 +125,7 @@ html{
 
 <header>
     <h1>Financial Literacy for Teens</h1>
-    <p>Helping Students Build Smart Money Habits for Life</p>
+    <p>Learn Money Skills for Life</p>
 </header>
 
 <nav>
@@ -142,127 +136,110 @@ html{
 
 <div class="container">
 
-    <div class="section">
-        <h2>Welcome</h2>
+<!-- HOME -->
+<div class="section">
+    <h2>Welcome</h2>
+    <p>
+        Learn budgeting, saving, credit, investing, and real-world money skills.
+    </p>
+</div>
+
+<!-- COURSEWORK -->
+<div class="section" id="coursework">
+
+    <h2>📚 Coursework</h2>
+
+    <div class="lesson-card">
+
+        <h3>Lesson 1: Financial Literacy Basics</h3>
 
         <p>
-            Welcome to Financial Literacy for Teens. This website helps
-            middle and high school students learn the fundamentals of money,
-            banking, saving, investing, debt, credit, and financial responsibility.
+            Covers: cash, debt, credit, savings, investing, loans, interest, and more.
         </p>
-    </div>
 
-    <div class="section" id="coursework">
-
-        <h2>📚 Coursework</h2>
-
-        <div class="lesson-card">
-
-            <h3>Lesson 1: Basic Financial Literacy for Teens</h3>
-
-            <p>
-                Learn about:
-            </p>
-
-            <ul>
-                <li>Cash</li>
-                <li>Debt</li>
-                <li>Debit Cards</li>
-                <li>Credit Cards</li>
-                <li>Bank Accounts</li>
-                <li>Savings Accounts</li>
-                <li>Investment Accounts</li>
-                <li>Assets and Liabilities</li>
-                <li>Income</li>
-                <li>Credit Scores</li>
-                <li>Loans and Interest</li>
-                <li>Mortgages</li>
-            </ul>
-
-            <a class="button"
-               href="presentations/FinancialLiteracy.pdf"
-               target="_blank">
-               📖 Open Presentation
-            </a>
-
-        </div>
-
-    </div>
-
-    <div class="section" id="quizzes">
-
-        <h2>📝 Quiz</h2>
-
-        <button class="button"
-        onclick="document.getElementById('quiz').style.display='block'">
-            Start Quiz
-        </button>
-
-        <div id="quiz" style="display:none;">
-
-            <div class="quiz-question">
-                <p><strong>1. What is debt?</strong></p>
-                <input type="radio" name="q1" value="1"> Money you owe<br>
-                <input type="radio" name="q1" value="0"> Money you earn
-            </div>
-
-            <div class="quiz-question">
-                <p><strong>2. Which account is mainly used for daily spending?</strong></p>
-                <input type="radio" name="q2" value="1"> Checking Account<br>
-                <input type="radio" name="q2" value="0"> Savings Account
-            </div>
-
-            <div class="quiz-question">
-                <p><strong>3. What does a credit card allow you to do?</strong></p>
-                <input type="radio" name="q3" value="1"> Borrow money and pay later<br>
-                <input type="radio" name="q3" value="0"> Store money safely
-            </div>
-
-            <div class="quiz-question">
-                <p><strong>4. What is a credit score?</strong></p>
-                <input type="radio" name="q4" value="1"> Measure of financial responsibility<br>
-                <input type="radio" name="q4" value="0"> Type of bank account
-            </div>
-
-            <div class="quiz-question">
-                <p><strong>5. What is interest?</strong></p>
-                <input type="radio" name="q5" value="1"> Extra money paid or earned<br>
-                <input type="radio" name="q5" value="0"> Original loan amount
-            </div>
-
-            <br>
-
-            <button class="button" onclick="gradeQuiz()">
-                Submit Quiz
-            </button>
-
-            <div id="result"></div>
-
-        </div>
-
-    </div>
-
-    <div class="section" id="about">
-
-        <h2>ℹ️ About This Project</h2>
-
-        <p>
-            This website was created by Rohan Vannadil to provide free
-            financial literacy education for middle and high school students.
-            The goal is to make important money-management concepts simple,
-            practical, and accessible to everyone.
-        </p>
+        <!-- ✅ FIXED LINK (IMPORTANT) -->
+        <a class="button"
+           href="presentations/FinancialLiteracy.pdf"
+           target="_blank">
+           📖 Open Presentation
+        </a>
 
     </div>
 
 </div>
 
+<!-- QUIZ -->
+<div class="section" id="quizzes">
+
+    <h2>📝 Quiz</h2>
+
+    <button class="button"
+    onclick="document.getElementById('quizBox').style.display='block'">
+        Start Quiz
+    </button>
+
+    <div id="quizBox" style="display:none; margin-top:20px;">
+
+        <div class="quiz-question">
+            <p><b>1. What is debt?</b></p>
+            <input type="radio" name="q1" value="1"> Money you owe<br>
+            <input type="radio" name="q1" value="0"> Money you earn
+        </div>
+
+        <div class="quiz-question">
+            <p><b>2. What is a checking account used for?</b></p>
+            <input type="radio" name="q2" value="1"> Daily spending<br>
+            <input type="radio" name="q2" value="0"> Saving only
+        </div>
+
+        <div class="quiz-question">
+            <p><b>3. Credit cards allow you to:</b></p>
+            <input type="radio" name="q3" value="1"> Borrow money<br>
+            <input type="radio" name="q3" value="0"> Print cash
+        </div>
+
+        <div class="quiz-question">
+            <p><b>4. What is interest?</b></p>
+            <input type="radio" name="q4" value="1"> Cost of borrowing money<br>
+            <input type="radio" name="q4" value="0"> Free money
+
+        </div>
+
+        <div class="quiz-question">
+            <p><b>5. What is a credit score?</b></p>
+            <input type="radio" name="q5" value="1"> Financial trust score<br>
+            <input type="radio" name="q5" value="0"> Bank account type
+        </div>
+
+        <br>
+
+        <button class="button" onclick="gradeQuiz()">
+            Submit Quiz
+        </button>
+
+        <div id="result"></div>
+
+    </div>
+
+</div>
+
+<!-- ABOUT -->
+<div class="section" id="about">
+
+    <h2>ℹ️ About</h2>
+    <p>
+        A student-built financial literacy website designed to teach real-world money skills.
+    </p>
+
+</div>
+
+</div>
+
 <footer>
-    Financial Literacy for Teens © 2026
+    Financial Literacy © 2026
 </footer>
 
 <script>
-
 function gradeQuiz(){
 
 let score = 0;
@@ -273,21 +250,10 @@ score += Number(document.querySelector('input[name="q3"]:checked')?.value || 0);
 score += Number(document.querySelector('input[name="q4"]:checked')?.value || 0);
 score += Number(document.querySelector('input[name="q5"]:checked')?.value || 0);
 
-let message = "";
+document.getElementById("result").innerHTML =
+"Your Score: " + score + "/5";
 
-if(score === 5){
-    message = "🎉 Perfect! You scored 5/5.";
 }
-else if(score >= 3){
-    message = "👍 Good job! You scored " + score + "/5.";
-}
-else{
-    message = "📚 Keep learning! You scored " + score + "/5.";
-}
-
-document.getElementById("result").innerHTML = message;
-}
-
 </script>
 
 </body>
