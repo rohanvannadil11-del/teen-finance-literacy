@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,6 +39,7 @@ nav{
     box-shadow:0 2px 8px rgba(0,0,0,.08);
     position:sticky;
     top:0;
+    z-index:100;
 }
 
 nav a{
@@ -48,6 +50,7 @@ nav a{
     margin:5px;
     border-radius:8px;
     font-weight:bold;
+    display:inline-block;
 }
 
 nav a:hover{
@@ -89,6 +92,7 @@ nav a:hover{
     margin-top:10px;
     border:none;
     cursor:pointer;
+    font-size:16px;
 }
 
 .button:hover{
@@ -118,6 +122,38 @@ html{
     scroll-behavior:smooth;
 }
 
+.progress-container{
+    background:#dbeafe;
+    height:35px;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    width:0%;
+    height:35px;
+    background:#2563eb;
+    color:white;
+    text-align:center;
+    line-height:35px;
+    font-weight:bold;
+    transition:0.4s;
+}
+
+.stats{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-top:20px;
+}
+
+.stat-card{
+    background:#eff6ff;
+    padding:15px;
+    border-radius:10px;
+    border:1px solid #bfdbfe;
+}
+
 </style>
 </head>
 
@@ -131,20 +167,19 @@ html{
 <nav>
     <a href="#coursework">📚 Coursework</a>
     <a href="#quizzes">📝 Quiz</a>
+    <a href="#progress">🏆 Progress</a>
     <a href="#about">ℹ️ About</a>
 </nav>
 
 <div class="container">
 
-<!-- HOME -->
 <div class="section">
     <h2>Welcome</h2>
     <p>
-        Learn budgeting, saving, credit, investing, and real-world money skills.
+        Learn budgeting, saving, credit, investing, banking, and other real-world money skills.
     </p>
 </div>
 
-<!-- COURSEWORK -->
 <div class="section" id="coursework">
 
     <h2>📚 Coursework</h2>
@@ -154,10 +189,12 @@ html{
         <h3>Lesson 1: Financial Literacy Basics</h3>
 
         <p>
-            Covers: cash, debt, credit, savings, investing, loans, interest, and more.
+            Covers cash, debt, debit cards, credit cards, savings,
+            investing, loans, interest, assets, liabilities,
+            income, and credit scores.
         </p>
 
-        <!-- ✅ FIXED LINK (IMPORTANT) -->
+        <!-- Change filename if needed -->
         <a class="button"
            href="presentations/FinancialLiteracy.pdf"
            target="_blank">
@@ -168,7 +205,6 @@ html{
 
 </div>
 
-<!-- QUIZ -->
 <div class="section" id="quizzes">
 
     <h2>📝 Quiz</h2>
@@ -202,7 +238,6 @@ html{
             <p><b>4. What is interest?</b></p>
             <input type="radio" name="q4" value="1"> Cost of borrowing money<br>
             <input type="radio" name="q4" value="0"> Free money
-
         </div>
 
         <div class="quiz-question">
@@ -223,12 +258,47 @@ html{
 
 </div>
 
-<!-- ABOUT -->
+<div class="section" id="progress">
+
+    <h2>🏆 Progress Tracker</h2>
+
+    <p>Earn XP by completing quizzes.</p>
+
+    <div class="progress-container">
+        <div id="progressBar" class="progress-bar">
+            0%
+        </div>
+    </div>
+
+    <div class="stats">
+
+        <div class="stat-card">
+            ⭐ XP: <span id="xpDisplay">0</span>
+        </div>
+
+        <div class="stat-card">
+            🏅 Badge:
+            <span id="badgeDisplay">🌱 Beginner</span>
+        </div>
+
+    </div>
+
+    <br>
+
+    <button class="button" onclick="resetProgress()">
+        🔄 Reset Progress
+    </button>
+
+</div>
+
 <div class="section" id="about">
 
     <h2>ℹ️ About</h2>
+
     <p>
-        A student-built financial literacy website designed to teach real-world money skills.
+        This student-created website helps middle and high school students
+        build practical financial literacy skills through lessons,
+        presentations, and quizzes.
     </p>
 
 </div>
@@ -240,21 +310,108 @@ html{
 </footer>
 
 <script>
+
+let xp = parseInt(localStorage.getItem("financeXP")) || 0;
+
+window.onload = function(){
+    updateProgress();
+};
+
 function gradeQuiz(){
 
-let score = 0;
+    let score = 0;
 
-score += Number(document.querySelector('input[name="q1"]:checked')?.value || 0);
-score += Number(document.querySelector('input[name="q2"]:checked')?.value || 0);
-score += Number(document.querySelector('input[name="q3"]:checked')?.value || 0);
-score += Number(document.querySelector('input[name="q4"]:checked')?.value || 0);
-score += Number(document.querySelector('input[name="q5"]:checked')?.value || 0);
+    score += Number(document.querySelector('input[name="q1"]:checked')?.value || 0);
+    score += Number(document.querySelector('input[name="q2"]:checked')?.value || 0);
+    score += Number(document.querySelector('input[name="q3"]:checked')?.value || 0);
+    score += Number(document.querySelector('input[name="q4"]:checked')?.value || 0);
+    score += Number(document.querySelector('input[name="q5"]:checked')?.value || 0);
 
-document.getElementById("result").innerHTML =
-"Your Score: " + score + "/5";
+    let xpEarned = score * 20;
 
+    let message = "";
+
+    if(score === 5){
+        message = "🎉 PERFECT! 5/5 (+100 XP)";
+    }
+    else if(score === 4){
+        message = "⭐ Great Job! 4/5 (+80 XP)";
+    }
+    else if(score === 3){
+        message = "👍 Nice Work! 3/5 (+60 XP)";
+    }
+    else{
+        message = "📚 Keep Learning! " + score + "/5";
+    }
+
+    document.getElementById("result").innerHTML = message;
+
+    addXP(xpEarned);
 }
+
+function addXP(amount){
+
+    xp += amount;
+
+    localStorage.setItem(
+        "financeXP",
+        xp
+    );
+
+    updateProgress();
+}
+
+function updateProgress(){
+
+    document.getElementById("xpDisplay").innerHTML = xp;
+
+    let percent = Math.min(
+        (xp / 500) * 100,
+        100
+    );
+
+    document.getElementById("progressBar").style.width =
+        percent + "%";
+
+    document.getElementById("progressBar").innerHTML =
+        Math.round(percent) + "%";
+
+    let badge = "🌱 Beginner";
+
+    if(xp >= 100){
+        badge = "💰 Saver";
+    }
+
+    if(xp >= 200){
+        badge = "📈 Investor";
+    }
+
+    if(xp >= 350){
+        badge = "🏦 Money Manager";
+    }
+
+    if(xp >= 500){
+        badge = "👑 Financial Literacy Master";
+    }
+
+    document.getElementById("badgeDisplay").innerHTML =
+        badge;
+}
+
+function resetProgress(){
+
+    xp = 0;
+
+    localStorage.setItem(
+        "financeXP",
+        0
+    );
+
+    updateProgress();
+}
+
 </script>
 
 </body>
 </html>
+```
