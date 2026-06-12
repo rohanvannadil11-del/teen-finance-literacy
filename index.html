@@ -26,86 +26,111 @@ header h1{
     color:#1e40af;
 }
 
+header p{
+    font-size:1.2rem;
+    color:#374151;
+}
+
 nav{
     background:white;
     text-align:center;
     padding:15px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
     position:sticky;
     top:0;
-    box-shadow:0 2px 8px rgba(0,0,0,.08);
+    z-index:100;
 }
 
 nav a{
     text-decoration:none;
     background:#dbeafe;
     color:#1e40af;
-    padding:10px 18px;
+    padding:12px 22px;
     margin:5px;
     border-radius:8px;
     font-weight:bold;
 }
 
+nav a:hover{
+    background:#93c5fd;
+}
+
 .container{
-    max-width:1000px;
+    max-width:1100px;
     margin:auto;
     padding:30px;
 }
 
 .section{
     background:white;
-    padding:25px;
-    margin-bottom:20px;
     border-radius:12px;
+    padding:30px;
+    margin-bottom:25px;
     box-shadow:0 4px 12px rgba(0,0,0,.08);
 }
 
 .lesson-card{
     background:#eff6ff;
-    padding:20px;
-    border-radius:10px;
     border:1px solid #bfdbfe;
+    border-radius:10px;
+    padding:20px;
 }
 
 .button{
+    display:inline-block;
     background:#2563eb;
     color:white;
-    border:none;
-    padding:12px 18px;
+    padding:12px 20px;
     border-radius:8px;
+    text-decoration:none;
+    border:none;
     cursor:pointer;
     margin-top:10px;
-    font-weight:bold;
 }
 
 .button:hover{
     background:#1d4ed8;
 }
 
-#quizBox{
-    margin-top:15px;
+.quiz-box{
+    display:none;
+    margin-top:20px;
+}
+
+.quiz-question{
+    margin-bottom:18px;
 }
 
 .progress-bar-bg{
     background:#dbeafe;
     border-radius:20px;
     overflow:hidden;
-    height:25px;
+    height:30px;
 }
 
 .progress-bar{
     background:#2563eb;
-    height:25px;
     width:0%;
+    height:30px;
     color:white;
     text-align:center;
-    line-height:25px;
+    line-height:30px;
+    transition:0.5s;
 }
 
 #result{
-    font-size:20px;
-    font-weight:bold;
     margin-top:15px;
+    font-size:22px;
+    font-weight:bold;
     color:#1e40af;
+}
+
+footer{
+    background:#dbeafe;
+    text-align:center;
+    padding:25px;
+    color:#1e40af;
+    font-weight:bold;
 }
 
 </style>
@@ -119,12 +144,22 @@ nav a{
 </header>
 
 <nav>
-<a href="#coursework">Coursework</a>
-<a href="#quiz">Quiz</a>
-<a href="#why">Why It Matters</a>
+<a href="#why">💡 Why It Matters</a>
+<a href="#coursework">📚 Coursework</a>
+<a href="#quizzes">📝 Quizzes</a>
+<a href="#progress">🏆 Progress</a>
 </nav>
 
 <div class="container">
+
+<!-- WHY -->
+<div class="section" id="why">
+<h2>💡 Why Financial Literacy Matters</h2>
+<p>
+Financial literacy helps students understand money, saving, investing, and debt before adulthood.
+It helps avoid mistakes and build long-term financial freedom.
+</p>
+</div>
 
 <!-- COURSEWORK -->
 <div class="section" id="coursework">
@@ -132,165 +167,256 @@ nav a{
 <h2>📚 Coursework</h2>
 
 <div class="lesson-card">
-
-<h3>Financial Literacy Lesson</h3>
-
-<p>
-Cash, debt, credit, savings, investing, loans, interest, and budgeting.
-</p>
+<h3>Lesson 1</h3>
+<p>Basics of money, credit, savings, and budgeting.</p>
 
 <a class="button"
-href="Financial Literacy Club.pdf"
+href="presentations/Financial Literacy Club (1).pdf"
 target="_blank">
 📖 Open Presentation
 </a>
-
 </div>
 
 </div>
 
-<!-- QUIZ -->
-<div class="section" id="quiz">
+<!-- QUIZZES -->
+<div class="section" id="quizzes">
 
-<h2>📝 Quiz</h2>
+<h2>📝 Quizzes</h2>
 
-<button class="button" onclick="startQuiz()">Start Quiz</button>
+<button class="button" onclick="showQuiz('quiz1')">Budget Quiz</button>
+<button class="button" onclick="showQuiz('quiz2')">Credit Quiz</button>
+<button class="button" onclick="showQuiz('quiz3')">Investing Quiz</button>
+<button class="button" onclick="showQuiz('quiz4')">Lesson 2 Quiz</button>
 
-<div id="quizBox" style="display:none;"></div>
+<!-- QUIZ 1 -->
+<div id="quiz1" class="quiz-box">
+<h3>Budget Quiz</h3>
+
+<div class="quiz-question">
+<p>1. What is a budget?</p>
+<input type="radio" name="b1" value="1"> Plan for money<br>
+<input type="radio" name="b1" value="0"> Random spending
+</div>
+
+<div class="quiz-question">
+<p>2. What is an expense?</p>
+<input type="radio" name="b2" value="1"> Money you spend<br>
+<input type="radio" name="b2" value="0"> Money you earn
+</div>
+
+<button class="button" onclick="gradeQuiz('budget')">Submit</button>
+</div>
+
+<!-- QUIZ 2 -->
+<div id="quiz2" class="quiz-box">
+<h3>Credit Quiz</h3>
+
+<div class="quiz-question">
+<p>1. What is credit?</p>
+<input type="radio" name="c1" value="1"> Borrowed money<br>
+<input type="radio" name="c1" value="0"> Free money
+</div>
+
+<div class="quiz-question">
+<p>2. What is credit score?</p>
+<input type="radio" name="c2" value="1"> Trust rating<br>
+<input type="radio" name="c2" value="0"> Bank account
+</div>
+
+<button class="button" onclick="gradeQuiz('credit')">Submit</button>
+</div>
+
+<!-- QUIZ 3 -->
+<div id="quiz3" class="quiz-box">
+<h3>Investing Quiz</h3>
+
+<div class="quiz-question">
+<p>1. Stocks represent:</p>
+<input type="radio" name="i1" value="1"> Ownership<br>
+<input type="radio" name="i1" value="0"> Debt
+</div>
+
+<div class="quiz-question">
+<p>2. Investing grows money through:</p>
+<input type="radio" name="i2" value="1"> Time<br>
+<input type="radio" name="i2" value="0"> Ignoring it
+</div>
+
+<button class="button" onclick="gradeQuiz('invest')">Submit</button>
+</div>
+
+<!-- QUIZ 4 -->
+<div id="quiz4" class="quiz-box">
+<h3>Lesson 2 Quiz</h3>
+
+<div class="quiz-question">
+<p>1. Inflation means:</p>
+<input type="radio" name="l1" value="1"> Prices rise<br>
+<input type="radio" name="l1" value="0"> Prices fall forever
+</div>
+
+<div class="quiz-question">
+<p>2. Diversification means:</p>
+<input type="radio" name="l2" value="1"> Spread investments<br>
+<input type="radio" name="l2" value="0"> One stock only
+</div>
+
+<button class="button" onclick="gradeQuiz('lesson2')">Submit</button>
+</div>
 
 <div id="result"></div>
-
-<button class="button" id="anotherBtn" style="display:none;" onclick="newQuiz()">
-Another Quiz
-</button>
-
-</div>
-
-<!-- WHY IT MATTERS -->
-<div class="section" id="why">
-
-<h2>💡 Why Financial Literacy Matters</h2>
-
-<p>
-Financial literacy is important because it teaches you how to manage money, avoid debt, and build a stable future.
-Without these skills, people often struggle with overspending, loans, and long-term financial stress.
-</p>
-
-<ul>
-<li>Helps you avoid debt traps</li>
-<li>Builds savings habits early</li>
-<li>Improves decision-making</li>
-<li>Prepares you for adulthood</li>
-<li>Helps build wealth over time</li>
-</ul>
 
 </div>
 
 <!-- PROGRESS -->
-<div class="section">
-
+<div class="section" id="progress">
 <h2>🏆 Progress</h2>
 
 <div class="progress-bar-bg">
 <div id="bar" class="progress-bar">0%</div>
 </div>
 
-</div>
+<p>XP: <span id="xp">0</span></p>
+
+<br>
+
+<button class="button" onclick="resetProgress()">
+🔄 Reset Progress
+</button>
 
 </div>
+
+<footer>
+Financial Literacy © 2026
+</footer>
 
 <script>
 
-let quizzes = [
+let xp = Number(localStorage.getItem("xp") || 0);
+let completed = JSON.parse(localStorage.getItem("completed") || "[]");
 
-[
-{q:"What is budgeting?", a:["Spending without plan","Plan for money"], c:1},
-{q:"What is income?", a:["Money you earn","Money you lose"], c:0},
-{q:"What is an expense?", a:["Money you spend","Free money"], c:0}
-],
+update();
 
-[
-{q:"What is credit?", a:["Borrowed money","Free money"], c:0},
-{q:"What is a credit score?", a:["Trust rating","Bank account"], c:0},
-{q:"Credit cards are used to:", a:["Borrow money","Store cash"], c:0}
-],
+function showQuiz(id){
+    document.querySelectorAll(".quiz-box").forEach(q => {
+        q.style.display = "none";
+    });
 
-[
-{q:"What is investing?", a:["Growing money","Spending money"], c:0},
-{q:"Stocks represent:", a:["Ownership","Debt"], c:0},
-{q:"Risk means:", a:["Chance of loss/gain","Guaranteed profit"], c:0}
-]
-
-];
-
-let currentQuiz = [];
-let score = 0;
-
-function startQuiz(){
-
-score = 0;
-
-currentQuiz = quizzes[Math.floor(Math.random()*quizzes.length)];
-
-let html = "";
-
-currentQuiz.forEach((q,i)=>{
-
-html += `<p><b>${q.q}</b></p>
-<input type="radio" name="q${i}" value="0"> ${q.a[0]}<br>
-<input type="radio" name="q${i}" value="1"> ${q.a[1]}<br><br>`;
-
-});
-
-html += `<button class="button" onclick="submitQuiz()">Submit Quiz</button>`;
-
-document.getElementById("quizBox").innerHTML = html;
-document.getElementById("quizBox").style.display="block";
-document.getElementById("result").innerHTML="";
-document.getElementById("anotherBtn").style.display="none";
-
+    document.getElementById(id).style.display = "block";
+    document.getElementById("result").innerHTML = "";
 }
 
-function submitQuiz(){
+function gradeQuiz(type){
 
-score = 0;
+    if(completed.includes(type)){
+        document.getElementById("result").innerHTML =
+        "⚠️ You already completed this quiz.";
+        return;
+    }
 
-currentQuiz.forEach((q,i)=>{
+    let quiz = document.getElementById(getId(type));
 
-let selected = document.querySelector(`input[name="q${i}"]:checked`);
+    let inputs =
+    quiz.querySelectorAll("input[type=radio]");
 
-if(selected && Number(selected.value) === q.c){
-score++;
+    let score = 0;
+
+    let total =
+    quiz.querySelectorAll(".quiz-question").length;
+
+    let used = new Set();
+
+    inputs.forEach(i=>{
+
+        if(i.checked && !used.has(i.name)){
+
+            score += Number(i.value);
+            used.add(i.name);
+
+        }
+
+    });
+
+    let percent =
+    Math.round((score/total)*100);
+
+    let earned =
+    Math.round(percent*2);
+
+    xp += earned;
+
+    completed.push(type);
+
+    localStorage.setItem("xp",xp);
+    localStorage.setItem(
+        "completed",
+        JSON.stringify(completed)
+    );
+
+    let message="";
+
+    if(percent===100){
+        message="🏆 Perfect Score!";
+    }
+    else if(percent>=80){
+        message="✅ Excellent!";
+    }
+    else if(percent>=60){
+        message="👍 Good Job!";
+    }
+    else{
+        message="📚 Review the lesson and try again.";
+    }
+
+    document.getElementById("result").innerHTML=
+    `Score ${score}/${total}
+    (${percent}%)
+    +${earned} XP
+    <br>${message}`;
+
+    update();
 }
 
-});
+function getId(t){
 
-let percent = Math.round((score/currentQuiz.length)*100);
+    if(t==="budget") return "quiz1";
 
-document.getElementById("result").innerHTML =
-`You scored ${score}/${currentQuiz.length} (${percent}%)`;
+    if(t==="credit") return "quiz2";
 
-updateProgress(percent);
+    if(t==="invest") return "quiz3";
 
-document.getElementById("anotherBtn").style.display="inline-block";
-
+    if(t==="lesson2") return "quiz4";
 }
 
-function newQuiz(){
+function update(){
 
-document.getElementById("quizBox").style.display="none";
-document.getElementById("result").innerHTML="";
-document.getElementById("anotherBtn").style.display="none";
+    document.getElementById("xp").innerText = xp;
 
-updateProgress(0);
+    let p =
+    Math.min((xp/500)*100,100);
 
+    let bar =
+    document.getElementById("bar");
+
+    bar.style.width = p + "%";
+
+    bar.innerText =
+    Math.round(p) + "%";
 }
 
-function updateProgress(p){
+function resetProgress(){
 
-document.getElementById("bar").style.width = p + "%";
-document.getElementById("bar").innerText = p + "%";
+    localStorage.removeItem("xp");
+    localStorage.removeItem("completed");
 
+    xp = 0;
+    completed = [];
+
+    update();
+
+    document.getElementById("result").innerHTML =
+    "Progress reset.";
 }
 
 </script>
